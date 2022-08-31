@@ -281,6 +281,9 @@ module.exports = {
                 throw new Error("The value \""+pluginVariables['IOS_FIREBASE_SDK_VERSION']+"\" for IOS_FIREBASE_SDK_VERSION is not a valid version in the format 'X.Y.Z'")
             }
         }
+/*  CHANGED from upstream:
+    this seems to never respect the IOS_USE_PRECOMPILED_FIRESTORE_POD variable for our setup, but always installs the precompiled version. that's not working for us.
+    Kai R., SDA SE
 
         if(pluginVariables['IOS_USE_PRECOMPILED_FIRESTORE_POD'] === 'true'){
             var standardFirestorePodMatches = podFileContents.match(standardFirestorePodRegEx);
@@ -290,7 +293,7 @@ module.exports = {
                 console.log("Configured Podfile for pre-built Firestore pod");
             }
         }
-
+*/
         if(podFileModified) fs.writeFileSync(path.resolve(iosPlatform.podFile), podFileContents);
     }
 };
